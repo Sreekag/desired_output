@@ -16,23 +16,17 @@ def convert_json_to_json(file_path: str) -> dict:
     with open(file_path, "r") as f:
         return json.load(f)
 def convert_json_to_html(file_path: str):
-    # Read the JSON content from the file
     with open(file_path, "r") as file:
         data = json.load(file)
-    
-    # Start building the HTML table
     html_content = "<html><body><table border='1'>"
     
-    if isinstance(data, list):  # If it's a list of items
-        # Add headers
+    if isinstance(data, list):
         if data:
             headers = data[0].keys()
             html_content += "<thead><tr>"
             for header in headers:
                 html_content += f"<th>{header}</th>"
             html_content += "</tr></thead>"
-        
-        # Add rows
         html_content += "<tbody>"
         for item in data:
             html_content += "<tr>"
